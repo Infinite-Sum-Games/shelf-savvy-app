@@ -1,70 +1,101 @@
 import React, { useState } from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, PlusCircle } from 'lucide-react';
 
 function Recipe() {
-  const posts = [
+  const initialPosts = [
     {
       id: 1,
       user: 'John Doe',
       title: 'First Recipe',
       content: 'This is my first recipe! I hope you enjoy it. It contains detailed steps and tips that will make your cooking experience more enjoyable. Follow this method step by step and you’ll end up with a delicious dish.',
+      likes: 0,
+      liked: false, 
     },
     {
       id: 2,
       user: 'Jane Smith',
       title: 'Pizza Dough',
       content: 'I just discovered a new way to make pizza dough! It’s simple and easy. The recipe requires basic ingredients that you probably already have at home. You can make delicious pizzas at home using this dough recipe.',
+      likes: 0, 
+      liked: false,
     },
     {
       id: 3,
       user: 'Michael Johnson',
       title: 'Perfect Pancakes',
       content: 'How to make the perfect pancake: Easy recipe with minimal ingredients! These pancakes are fluffy and delicious, made with just a few simple ingredients that you can find in your pantry. Start cooking them on medium heat for best results.',
+      likes: 0, 
+      liked: false, 
     },
     {
       id: 4,
       user: 'skjdnfkjda',
       title: 'Leftover Ideas',
       content: 'This is my first recipe! I hope you enjoy it. You can turn your leftovers into a gourmet meal if you follow this simple recipe that I have tried at home.',
+      likes: 0, 
+      liked: false, 
     },
     {
       id: 5,
       user: 'jndsjv',
       title: 'Dough Master',
       content: 'I just discovered a new way to make pizza dough! It is different from the traditional recipe, and gives your pizza a chewy, fluffy texture that everyone will love.',
+      likes: 0,
+      liked: false,
     },
     {
       id: 6,
       user: 'sudfhwuf',
       title: 'Pancake Magic',
       content: 'How to make the perfect pancake: Easy recipe with minimal ingredients! Make your mornings better with these pancakes. They are soft, fluffy, and delicious.',
+      likes: 0,
+      liked: false, 
     },
   ];
 
-  const [likes, setLikes] = useState(Array(posts.length).fill(0));
-  const [likedPosts, setLikedPosts] = useState(Array(posts.length).fill(false)); // Track whether post is liked
-  const [expanded, setExpanded] = useState(Array(posts.length).fill(false)); // Track whether the content is expanded
+  const [posts, setPosts] = useState(initialPosts);
+  const [expanded, setExpanded] = useState(Array(initialPosts.length).fill(false)); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [newRecipe, setNewRecipe] = useState({ user: '', title: '', content: '',likes:0 ,liked:false}); 
 
   const handleLike = (index) => {
-    const newLikes = [...likes];
-    const newLikedPosts = [...likedPosts];
+    const updatedPosts = [...posts];
+    const post = updatedPosts[index];
 
-    if (newLikedPosts[index]) {
-      newLikes[index] -= 1; // Decrease like count
-      newLikedPosts[index] = false; // Mark as unliked
+    if (post.liked) {
+      post.likes -= 1;
+      post.liked = false;
     } else {
-      newLikes[index] += 1; // Increase like count
-      newLikedPosts[index] = true; // Mark as liked
+      post.likes += 1;
+      post.liked = true;
     }
 
-    setLikes(newLikes);
-    setLikedPosts(newLikedPosts);
+    setPosts(updatedPosts);
   };
 
   const handleReadMore = (index) => {
     const newExpanded = [...expanded];
     newExpanded[index] = !newExpanded[index];
     setExpanded(newExpanded);
+  };
+
+  const handleSubmitRecipe = (e) => {
+    e.preventDefault();
+    const updatedPosts = [
+      ...posts,
+      { ...newRecipe, id: posts.length + 1, likes: 0, liked: false }, // Add the new recipe with a new ID and initial like count
+    ];
+    setPosts(updatedPosts);
+    setIsModalOpen(false); // Close modal after submitting
+    setNewRecipe({ user: '', title: '', content: '' }); // Clear form
+  };
+
+  const handleModalInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewRecipe((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -78,6 +109,17 @@ function Recipe() {
             Check out our delicious recipes!
           </h2>
         </div>
+
+        {/* Button to open Add Recipe modal */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg mb-6"
+        >
+          <PlusCircle size={20} className="mr-2" />
+          Add Recipe
+        </button>
+
+        {/* Recipe Posts */}
         <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
           {posts.map((post, index) => {
             const words = post.content.split(' ');
@@ -105,7 +147,7 @@ function Recipe() {
                   {secondPart && !expanded[index] && (
                     <a
                       onClick={() => handleReadMore(index)}
-                      className="text-blue-500 hover:text-blue-700 cursor-pointer"
+                      className="text-blue-500 hover:text-blue-700 cursor-pointer ml-2"
                     >
                       Read More ...
                     </a>
@@ -118,9 +160,9 @@ function Recipe() {
                   {expanded[index] && (
                     <a
                       onClick={() => handleReadMore(index)}
-                      className="text-blue-500 hover:text-blue-700 cursor-pointer"
+                      className="text-blue-500 hover:text-blue-700 cursor-pointer ml-2"
                     >
-                     Read Less...
+                      Read Less...
                     </a>
                   )}
                 </p>
@@ -132,7 +174,7 @@ function Recipe() {
                     className="flex items-center text-red-500 hover:text-red-700 transition-colors duration-300"
                   >
                     <Heart size={20} className="mr-2" />
-                    {likes[index]}
+                    {post.likes} {/* Display the updated like count */}
                   </button>
                 </div>
               </div>
@@ -140,6 +182,74 @@ function Recipe() {
           })}
         </div>
       </div>
+
+      {/* Modal for Adding Recipe */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-xl w-96">
+            <h2 className="text-2xl font-semibold mb-4">Add Recipe</h2>
+            <form onSubmit={handleSubmitRecipe}>
+              <div className="mb-4">
+                <label className="block text-gray-700" htmlFor="user">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="user"
+                  name="user"
+                  value={newRecipe.user}
+                  onChange={handleModalInputChange}
+                  className="w-full px-3 py-2 border rounded-md"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700" htmlFor="title">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={newRecipe.title}
+                  onChange={handleModalInputChange}
+                  className="w-full px-3 py-2 border rounded-md"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700" htmlFor="content">
+                  Content
+                </label>
+                <textarea
+                  id="content"
+                  name="content"
+                  value={newRecipe.content}
+                  onChange={handleModalInputChange}
+                  className="w-full px-3 py-2 border rounded-md"
+                  rows="4"
+                  required
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="mr-4 text-gray-600 hover:text-gray-800"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
