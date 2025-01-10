@@ -1,41 +1,38 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Recipe from "./components/Recipe";
 import Leaderboard from "./components/Leaderboard";
+import Topbar from "./components/Topbar";
 
 function App() {
   return (
-    <>
-      <Router>
-        <div className="relative h-screen w-screen flex flex-row">
- 
-          <div className="absolute inset-0 ">
-            <img
-              src="/food-bg4.jpg"
-              alt="Background1"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Sidebar Navbar */}
-          <div className="relative">
-            <Navbar />
-          </div>
-
-          {/* Content Overlay */}
-          <div className="relative flex-grow flex flex-col p-4 ">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/recipes" element={<Recipe />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-            </Routes>
-          </div>
+    <Router>
+      {/* Fullscreen container */}
+      <div className="relative h-screen w-screen">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img
+            src="/food-bg4.jpg"
+            alt="Background1"
+            className="w-full h-full object-cover"
+          />
         </div>
-      </Router>
-    </>
+
+        {/* Topbar */}
+        <Topbar />
+
+        {/* Content Section */}
+        <div className="relative pt-16 px-4"> {/* Add padding to avoid overlap with Topbar */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/recipes" element={<Recipe />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 

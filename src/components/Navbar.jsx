@@ -11,17 +11,16 @@ function Navbar() {
 
   return (
     <div className="relative">
-      {/* Toggle Button */}
       <button
-        className="text-white fixed top-4 left-4 z-50" // Ensure it's above other content
+        className="text-white flex items-center justify-center p-2 py-3 bg-transparent"
         onClick={toggle}
       >
         <MenuIcon size={32} />
       </button>
 
-      {/* Sidebar Menu - Conditionally Rendered */}
+      {/* Sidebar Menu */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 text-white w-64 p-4 z-40">
+        <div className="absolute top-12 left-0 bg-gray-900 text-white w-48 p-4 z-40 h-screen shadow-lg">
           <h1 className="text-2xl font-bold mb-6">Menu</h1>
           <Link
             to="/"
@@ -53,8 +52,6 @@ function Navbar() {
           </Link>
         </div>
       )}
-
-      {/* The rest of your page content can go here */}
     </div>
   );
 }
