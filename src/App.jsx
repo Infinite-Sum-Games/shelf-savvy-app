@@ -9,11 +9,15 @@ function App() {
     <>
       <div className="flex flex-row">
         <Router>
-          
+        <div>
+        <img
+          src="/food-bg4.jpg"
+          alt="Background1"
+          className="absolute inset-0 w-full h-full object-cover -z-10"
+        /></div>            
             <Navbar />
         
           <div className="flex flex-col">
-            {" "}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/recipes" element={<Recipe />} />
