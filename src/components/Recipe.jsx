@@ -123,8 +123,8 @@ function Recipe() {
         <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
           {posts.map((post, index) => {
             const words = post.content.split(' ');
-            const firstPart = words.slice(0, 10).join(' '); // Get the first 10 words
-            const secondPart = words.slice(10).join(' '); // Get the rest of the content
+            const firstPart = words.slice(0, 20).join(' '); // Get the first 10 words
+            const secondPart = words.slice(20).join(' '); // Get the rest of the content
 
             return (
               <div
@@ -183,12 +183,12 @@ function Recipe() {
         </div>
       </div>
       {isModalOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-gray-200 p-8 rounded-lg shadow-xl w-full sm:w-96 max-w-lg transform transition-transform duration-300 ease-in-out scale-95 hover:scale-100">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Add Your Recipe</h2>
+  <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+    <div className="bg-white p-8 rounded-2xl shadow-xl w-full sm:w-96 max-w-lg transform transition-transform duration-300 ease-in-out scale-95 hover:scale-100">
+      <h2 className="text-3xl font-semibold text-gray-900 mb-6 text-center">Add Your Recipe</h2>
       <form onSubmit={handleSubmitRecipe}>
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-medium" htmlFor="user">
+          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="user">
             Your Name
           </label>
           <input
@@ -197,13 +197,13 @@ function Recipe() {
             name="user"
             value={newRecipe.user}
             onChange={handleModalInputChange}
-            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
             required
           />
         </div>
 
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-medium" htmlFor="title">
+          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="title">
             Recipe Title
           </label>
           <input
@@ -212,13 +212,13 @@ function Recipe() {
             name="title"
             value={newRecipe.title}
             onChange={handleModalInputChange}
-            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
             required
           />
         </div>
 
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-medium" htmlFor="content">
+          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="content">
             Recipe Content
           </label>
           <textarea
@@ -226,23 +226,23 @@ function Recipe() {
             name="content"
             value={newRecipe.content}
             onChange={handleModalInputChange}
-            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
             rows="6"
             required
           />
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mt-4">
           <button
             type="button"
             onClick={() => setIsModalOpen(false)}
-            className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+            className="text-gray-600 hover:text-gray-800 font-medium transition-colors duration-200"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-6 py-3 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+            className="px-6 py-3 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
           >
             Submit
           </button>
