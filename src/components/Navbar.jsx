@@ -17,14 +17,13 @@ function Navbar() {
       >
         <MenuIcon size={32} />
       </button>
-
-      {/* Sidebar Menu */}
       {isOpen && (
-        <div className="absolute top-12 left-0 bg-gray-900 text-white w-48 p-4 z-40 h-screen shadow-lg">
+        <div className="absolute top-19 left-0 bg-gray-900 text-white w-48 p-4 z-10 h-screen shadow-lg">
           <h1 className="text-2xl font-bold mb-6">Menu</h1>
           <Link
             to="/"
             className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
+            onClick={toggle} // Close the menu on click
           >
             <Home className="mr-2" size={24} />
             Home
@@ -32,6 +31,7 @@ function Navbar() {
           <Link
             to="/recipes"
             className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
+            onClick={toggle} // Close the menu on click
           >
             <Book className="mr-2" size={24} />
             Recipes
@@ -39,6 +39,7 @@ function Navbar() {
           <Link
             to="/profile"
             className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
+            onClick={toggle} // Close the menu on click
           >
             <User className="mr-2" size={24} />
             Profile
@@ -46,6 +47,7 @@ function Navbar() {
           <Link
             to="/leaderboard"
             className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
+            onClick={toggle} // Close the menu on click
           >
             <Trophy className="mr-2" size={24} />
             Leaderboard
