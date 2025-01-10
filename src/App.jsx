@@ -7,12 +7,12 @@ import Leaderboard from "./components/Leaderboard";
 function App() {
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-row">
         <Router>
-          <div className="fixed top-0 left-0 w-full z-50">
+          
             <Navbar />
-          </div>
-          <div className="pt-16">
+        
+          <div className="flex flex-col">
             {" "}
             <Routes>
               <Route path="/" element={<Home />} />
