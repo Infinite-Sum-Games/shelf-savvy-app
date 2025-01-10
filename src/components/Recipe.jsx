@@ -123,8 +123,8 @@ function Recipe() {
         <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
           {posts.map((post, index) => {
             const words = post.content.split(' ');
-            const firstPart = words.slice(0, 10).join(' '); // Get the first 10 words
-            const secondPart = words.slice(10).join(' '); // Get the rest of the content
+            const firstPart = words.slice(0, 20).join(' '); // Get the first 10 words
+            const secondPart = words.slice(20).join(' '); // Get the rest of the content
 
             return (
               <div
@@ -174,7 +174,7 @@ function Recipe() {
                     className="flex items-center text-red-500 hover:text-red-700 transition-colors duration-300"
                   >
                     <Heart size={20} className="mr-2" />
-                    {post.likes} {/* Display the updated like count */}
+                    {post.likes} 
                   </button>
                 </div>
               </div>
@@ -182,74 +182,76 @@ function Recipe() {
           })}
         </div>
       </div>
-
-      {/* Modal for Adding Recipe */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl w-96">
-            <h2 className="text-2xl font-semibold mb-4">Add Recipe</h2>
-            <form onSubmit={handleSubmitRecipe}>
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="user">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="user"
-                  name="user"
-                  value={newRecipe.user}
-                  onChange={handleModalInputChange}
-                  className="w-full px-3 py-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="title">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={newRecipe.title}
-                  onChange={handleModalInputChange}
-                  className="w-full px-3 py-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="content">
-                  Content
-                </label>
-                <textarea
-                  id="content"
-                  name="content"
-                  value={newRecipe.content}
-                  onChange={handleModalInputChange}
-                  className="w-full px-3 py-2 border rounded-md"
-                  rows="4"
-                  required
-                />
-              </div>
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="mr-4 text-gray-600 hover:text-gray-800"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+  <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+    <div className="bg-white p-8 rounded-2xl shadow-xl w-full sm:w-96 max-w-lg transform transition-transform duration-300 ease-in-out scale-95 hover:scale-100">
+      <h2 className="text-3xl font-semibold text-gray-900 mb-6 text-center">Add Your Recipe</h2>
+      <form onSubmit={handleSubmitRecipe}>
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="user">
+            Your Name
+          </label>
+          <input
+            type="text"
+            id="user"
+            name="user"
+            value={newRecipe.user}
+            onChange={handleModalInputChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
+            required
+          />
         </div>
-      )}
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="title">
+            Recipe Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={newRecipe.title}
+            onChange={handleModalInputChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="content">
+            Recipe Content
+          </label>
+          <textarea
+            id="content"
+            name="content"
+            value={newRecipe.content}
+            onChange={handleModalInputChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
+            rows="6"
+            required
+          />
+        </div>
+
+        <div className="flex justify-between items-center mt-4">
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(false)}
+            className="text-gray-600 hover:text-gray-800 font-medium transition-colors duration-200"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="px-6 py-3 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
