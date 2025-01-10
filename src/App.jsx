@@ -23,7 +23,7 @@ function App() {
         <Topbar />
 
         {/* Content Section */}
-        <div className="relative pt-16 px-4"> {/* Add padding to avoid overlap with Topbar */}
+        <div className="relative  mt-[50px]"> {/* Add padding to avoid overlap with Topbar */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/recipes" element={<Recipe />} />
