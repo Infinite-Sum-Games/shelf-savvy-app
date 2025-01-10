@@ -174,7 +174,7 @@ function Recipe() {
                     className="flex items-center text-red-500 hover:text-red-700 transition-colors duration-300"
                   >
                     <Heart size={20} className="mr-2" />
-                    {post.likes} {/* Display the updated like count */}
+                    {post.likes} 
                   </button>
                 </div>
               </div>
@@ -182,74 +182,76 @@ function Recipe() {
           })}
         </div>
       </div>
-
-      {/* Modal for Adding Recipe */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl w-96">
-            <h2 className="text-2xl font-semibold mb-4">Add Recipe</h2>
-            <form onSubmit={handleSubmitRecipe}>
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="user">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="user"
-                  name="user"
-                  value={newRecipe.user}
-                  onChange={handleModalInputChange}
-                  className="w-full px-3 py-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="title">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={newRecipe.title}
-                  onChange={handleModalInputChange}
-                  className="w-full px-3 py-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="content">
-                  Content
-                </label>
-                <textarea
-                  id="content"
-                  name="content"
-                  value={newRecipe.content}
-                  onChange={handleModalInputChange}
-                  className="w-full px-3 py-2 border rounded-md"
-                  rows="4"
-                  required
-                />
-              </div>
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="mr-4 text-gray-600 hover:text-gray-800"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-gray-200 p-8 rounded-lg shadow-xl w-full sm:w-96 max-w-lg transform transition-transform duration-300 ease-in-out scale-95 hover:scale-100">
+      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Add Your Recipe</h2>
+      <form onSubmit={handleSubmitRecipe}>
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-medium" htmlFor="user">
+            Your Name
+          </label>
+          <input
+            type="text"
+            id="user"
+            name="user"
+            value={newRecipe.user}
+            onChange={handleModalInputChange}
+            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
         </div>
-      )}
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-medium" htmlFor="title">
+            Recipe Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={newRecipe.title}
+            onChange={handleModalInputChange}
+            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-medium" htmlFor="content">
+            Recipe Content
+          </label>
+          <textarea
+            id="content"
+            name="content"
+            value={newRecipe.content}
+            onChange={handleModalInputChange}
+            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            rows="6"
+            required
+          />
+        </div>
+
+        <div className="flex justify-between items-center">
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(false)}
+            className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="px-6 py-3 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
