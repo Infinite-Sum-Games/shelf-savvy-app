@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Home, Book, User, Trophy } from 'lucide-react';
 
 function Navbar() {
   return (
@@ -6,27 +7,27 @@ function Navbar() {
       <h1 className="text-2xl font-bold mb-6">Menu</h1>
       <Link
         to="/"
-        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded"
+        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
       >
-        Home
+        <Home className="mr-2" size={24} />
       </Link>
       <Link
         to="/recipes"
-        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded"
+        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
       >
-        Recipes
+        <Book className="mr-2" size={24} />
       </Link>
       <Link
         to="/profile"
-        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded"
+        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
       >
-        Profile
+        <User className="mr-2" size={24} />
       </Link>
       <Link
         to="/leaderboard"
-        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded"
+        className="mb-4 hover:bg-gray-700 p-2 w-full text-left rounded flex items-center"
       >
-        Leaderboard
+        <Trophy className="mr-2" size={24} />
       </Link>
     </div>
   );
