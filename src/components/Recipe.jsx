@@ -99,7 +99,7 @@ function Recipe() {
   };
 
   return (
-    <div className="p-4 max-h-screen flex flex-col">
+    <div className="p-4 max-h-screen flex flex-col overflow-x-hidden">
       <div className="max-w-full mx-auto space-y-6">
         <div className="text-center p-6 bg-gray-900 rounded-lg shadow-xl">
           <h1 className="text-2xl font-semibold text-white mb-4">
@@ -236,7 +236,7 @@ function Recipe() {
           <button
             type="button"
             onClick={() => setIsModalOpen(false)}
-            className="text-gray-400 hover:text-gray-300 font-medium transition-colors duration-200"
+            className="text-gray-400 bg-red-600 hover:text-gray-300 font-medium transition-colors duration-200"
           >
             Cancel
           </button>
