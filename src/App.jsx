@@ -4,7 +4,7 @@ import Profile from "./components/Profile";
 import Recipe from "./components/Recipe";
 import Leaderboard from "./components/Leaderboard";
 import Topbar from "./components/Topbar";
-
+import OTP from "./components/OTP";
 function App() {
   return (
     <Router>
@@ -25,6 +25,7 @@ function App() {
         {/* Content Section */}
         <div className="relative  mt-[50px]"> {/* Add padding to avoid overlap with Topbar */}
           <Routes>
+            <Route path="/otp" element={<OTP />}/>
             <Route path="/" element={<Home />} />
             <Route path="/recipes" element={<Recipe />} />
             <Route path="/profile" element={<Profile />} />
