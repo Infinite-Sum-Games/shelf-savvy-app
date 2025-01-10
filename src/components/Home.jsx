@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InventoryCard from "./inventorycard";
 import { Plus } from "lucide-react";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const initialData = [
   {
@@ -51,7 +52,7 @@ function Home() {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     }
   };
 
@@ -59,7 +60,7 @@ function Home() {
     <div className="text-white min-h-screen p-6 space-y-4 max-h-screen overflow-y-scroll">
       {/* Title */}
       <div>
-        <h1 className="text-5xl font-extrabold text-left text-white   mb-6">
+        <h1 className="text-5xl font-extrabold text-left text-white mb-6">
           Inventory
         </h1>
       </div>
@@ -69,7 +70,7 @@ function Home() {
         {/* Add item */}
         <button
           onClick={handleAddItemClick}
-          className="px-4 py-2 bg-gray-800 text-gray-300 rounded-md hover:bg-gray-600 flex items-center"
+          className="px-4 py-2 bg-gray-800 text-gray-300 rounded-md hover:bg-gray-700 flex items-center"
         >
           <Plus size={20} className="mr-2" /> Add Item
         </button>
@@ -78,7 +79,11 @@ function Home() {
       {/* Inventory Cards */}
       <div className="space-y-4">
         {data.map((item, index) => (
-          <InventoryCard key={index} title={item.name} quantity={item.quantity} />
+          <InventoryCard
+            key={index}
+            title={item.name}
+            quantity={item.quantity}
+          />
         ))}
       </div>
 
@@ -101,7 +106,10 @@ function Home() {
               />
             </div>
             <div>
-              <label className="block text-gray-300 mb-1" htmlFor="item-quantity">
+              <label
+                className="block text-gray-300 mb-1"
+                htmlFor="item-quantity"
+              >
                 Item Quantity
               </label>
               <input
@@ -130,6 +138,7 @@ function Home() {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }
