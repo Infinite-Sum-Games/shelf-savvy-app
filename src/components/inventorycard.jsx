@@ -58,7 +58,7 @@ const InventoryCard = ({ title, initialQuantity = 0 }) => {
                 onClick={handleConfirm}
                 className="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-400"
               >
-                <Check size={16} />
+                <Check size={16}/>
               </button>
               
             </div>

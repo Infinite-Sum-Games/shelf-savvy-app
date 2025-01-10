@@ -71,8 +71,6 @@ function Recipe() {
             Check out our delicious recipes!
           </h2>
         </div>
-
-        {/* Scrollable Content Section */}
         <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
           {posts.map((post, index) => (
             <div

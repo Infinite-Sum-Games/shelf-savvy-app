@@ -22,7 +22,7 @@ function Home() {
     <div className="flex flex-col p-6 space-y-4">
       {/* Title */}
       <div>
-      <h1 className="text-5xl font-extrabold text-center text-transparent bg-clip-text bg-[#faff1f] mb-2">
+      <h1 className="text-5xl font-extrabold text-center text-transparent bg-clip-text bg-[#0bcaff] mb-2">
         My Inventory
       </h1>
       </div>
