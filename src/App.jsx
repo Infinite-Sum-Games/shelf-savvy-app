@@ -1,10 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Recipe from "./components/Recipe";
 import Leaderboard from "./components/Leaderboard";
 import Topbar from "./components/Topbar";
 import OTP from "./components/OTP";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
+// Utility function to check if the user is authenticated
+const isAuthenticated = () => !!localStorage.getItem("authToken");
+
+// Utility function to check if the temp token is available
+const hasTempToken = () => !!localStorage.getItem("tempToken");
+
+// ProtectedRoute Component
+const ProtectedRoute = ({ children }) => {
+  return isAuthenticated() ? children : <Navigate to="/login" replace />;
+};
+
+// OTP Route Protection
+const ProtectedRouteForOTP = ({ children }) => {
+  return hasTempToken() ? children : <Navigate to="/register" replace />;
+};
+
 function App() {
   return (
     <Router>
@@ -18,18 +37,56 @@ function App() {
             className="w-full h-full object-cover"
           />
         </div>
-
-        {/* Topbar */}
         <Topbar />
-
-        {/* Content Section */}
-        <div className="relative  mt-[50px]"> {/* Add padding to avoid overlap with Topbar */}
+        <div className="relative mt-[50px]">
           <Routes>
-            <Route path="/otp" element={<OTP />}/>
-            <Route path="/" element={<Home />} />
-            <Route path="/recipes" element={<Recipe />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
+            {/* Public Routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            {/* OTP Route */}
+            <Route
+              path="/otp"
+              element={
+                <ProtectedRouteForOTP>
+                  <OTP />
+                </ProtectedRouteForOTP>
+              }
+            />
+
+            {/* Authenticated Protected Routes */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/recipes"
+              element={
+                <ProtectedRoute>
+                  <Recipe />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/leaderboard"
+              element={
+                <ProtectedRoute>
+                  <Leaderboard />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
       </div>
