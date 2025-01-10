@@ -151,7 +151,7 @@ const ProfilePage = () => {
               <span>Achievements</span>
             </h2>
             <div className="mt-4 space-y-2">
-              {user.Achievements?.map((Achievements) => (
+              {user.Achivements?.map((Achievements) => (
                 <div
                   key={Achievements.id}
                   className="bg-gray-100 rounded-lg p-4 flex items-center space-x-2"
@@ -177,7 +177,7 @@ const ProfilePage = () => {
               <span>Food Donations</span>
             </h2>
             <div className="mt-4 space-y-4">
-              {user.foodDonations?.map((donation) => (
+              {user.FoodDonation?.map((donation) => (
                 <div
                   key={donation.id}
                   className="flex items-center justify-between p-4 border-b border-gray-200"
