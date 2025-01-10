@@ -101,7 +101,7 @@ function Recipe() {
   return (
     <div className="p-4 max-h-screen flex flex-col">
       <div className="max-w-full mx-auto space-y-6">
-        <div className="text-center p-6 bg-gray-800 rounded-lg shadow-xl">
+        <div className="text-center p-6 bg-gray-900 rounded-lg shadow-xl">
           <h1 className="text-2xl font-semibold text-white mb-4">
             Wondering what to do with your leftovers?
           </h1>
@@ -129,7 +129,7 @@ function Recipe() {
             return (
               <div
                 key={post.id}
-                className="bg-gray-700 text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out w-full mb-4"
+                className="bg-gray-800 text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out w-full mb-4"
               >
                 <div className="flex items-center space-x-4">
                   <div className="text-xl font-semibold">{post.user}</div>
@@ -183,12 +183,12 @@ function Recipe() {
         </div>
       </div>
       {isModalOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-    <div className="bg-white p-8 rounded-2xl shadow-xl w-full sm:w-96 max-w-lg transform transition-transform duration-300 ease-in-out scale-95 hover:scale-100">
-      <h2 className="text-3xl font-semibold text-gray-900 mb-6 text-center">Add Your Recipe</h2>
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="bg-gray-900 p-8 rounded-2xl shadow-xl w-full sm:w-96 max-w-lg transform transition-transform duration-300 ease-in-out scale-95 hover:scale-100">
+      <h2 className="text-3xl font-semibold text-white mb-6 text-center">Add Your Recipe</h2>
       <form onSubmit={handleSubmitRecipe}>
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="user">
+          <label className="block text-gray-300 text-sm font-medium mb-2" htmlFor="user">
             Your Name
           </label>
           <input
@@ -197,13 +197,13 @@ function Recipe() {
             name="user"
             value={newRecipe.user}
             onChange={handleModalInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
+            className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200 text-white bg-gray-800"
             required
           />
         </div>
 
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="title">
+          <label className="block text-gray-300 text-sm font-medium mb-2" htmlFor="title">
             Recipe Title
           </label>
           <input
@@ -212,13 +212,13 @@ function Recipe() {
             name="title"
             value={newRecipe.title}
             onChange={handleModalInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
+            className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200 text-white bg-gray-800"
             required
           />
         </div>
 
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="content">
+          <label className="block text-gray-300 text-sm font-medium mb-2" htmlFor="content">
             Recipe Content
           </label>
           <textarea
@@ -226,7 +226,7 @@ function Recipe() {
             name="content"
             value={newRecipe.content}
             onChange={handleModalInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200"
+            className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200 text-white bg-gray-800"
             rows="6"
             required
           />
@@ -236,7 +236,7 @@ function Recipe() {
           <button
             type="button"
             onClick={() => setIsModalOpen(false)}
-            className="text-gray-600 hover:text-gray-800 font-medium transition-colors duration-200"
+            className="text-gray-400 hover:text-gray-300 font-medium transition-colors duration-200"
           >
             Cancel
           </button>
@@ -251,6 +251,7 @@ function Recipe() {
     </div>
   </div>
 )}
+
 
     </div>
   );
