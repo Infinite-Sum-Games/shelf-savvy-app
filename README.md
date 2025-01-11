@@ -31,6 +31,7 @@ community of responsible food consumers. The app empowers users to:
 # Tech Stack
 ```React```, ```CapacitorJS```, ```JavaScript```
 
+WebApp for FoodBanks located at [Shelf Savvy Web](https://github.com/infinite-sum-games/shelf-savvy-web)    
 Backend server located at [Shelf Savvy Server](https://github.com/infinite-sum-games/shelf-savvy-server)
 
 # Team Mates
