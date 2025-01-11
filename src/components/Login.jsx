@@ -24,9 +24,11 @@ function Login() {
 
       const data = await response.json();
       const token = data.token;
+      const email = data.email;
 
       // Store token in localStorage
       localStorage.setItem('authToken', token);
+      localStorage.setItem('email', email);
 
       // Navigate to a protected route (e.g., /profile)
       navigate('/profile');

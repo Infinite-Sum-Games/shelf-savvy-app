@@ -5,3 +5,7 @@ export const TEST_URL=baseUrl+"test"
 export const USER_LOGIN_URL=baseUrl+"auth/user/login"
 export const USER_REGISTER_URL=baseUrl+"auth/user/register"
 export const OTP_URL=baseUrl+"auth/user/register/otp/verify";
+export const POST_INV_URL=baseUrl+"inventory/user"
+export const POST_ADD_INV_URL=baseUrl+"inventory/"
+export const PUT_EDIT_INV_URL=baseUrl+"inventory/"
+export const DELETE_INV_URL=baseUrl+"inventory/"

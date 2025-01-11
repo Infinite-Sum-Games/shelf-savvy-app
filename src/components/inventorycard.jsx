@@ -1,11 +1,22 @@
-import { useState } from "react";
-import { Plus, Minus, Check } from "lucide-react";
-import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect } from "react";
+import { Plus, Minus, Check, Trash, Router } from "lucide-react";
+import { toast } from "react-toastify";
+import { PUT_EDIT_INV_URL, DELETE_INV_URL } from "../constants";
+import { useNavigate } from "react-router"
 
-const InventoryCard = ({ title, initialQuantity = 0 }) => {
-  const [quantity, setQuantity] = useState(Number(initialQuantity));
-  const [tempQuantity, setTempQuantity] = useState(Number(initialQuantity));
+const InventoryCard = ({ title, initialQuantity = 0, itemId, authToken, onDelete }) => {
+  const [quantity, setQuantity] = useState(initialQuantity);
+  const [tempQuantity, setTempQuantity] = useState(initialQuantity);
+  // console.log("initialQuantity", initialQuantity);
+  // console.log("quantity", quantity);
+  // console.log("tempQuantity", tempQuantity);
+  const navigate = useNavigate();
+
+  // Update state if initialQuantity changes
+  useEffect(() => {
+    setQuantity(initialQuantity);
+    setTempQuantity(initialQuantity);
+  }, [initialQuantity]);
 
   const handleIncrease = () => {
     setTempQuantity((prevQuantity) => prevQuantity + 1);
@@ -19,18 +30,104 @@ const InventoryCard = ({ title, initialQuantity = 0 }) => {
     }
   };
 
-  const handleConfirm = () => {
-    setQuantity(tempQuantity);
-    toast.success('Quantity updated successfully', {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
+  const handleConfirm = async () => {
+    if (tempQuantity !== quantity) {
+      try {
+        const updatedItem = {
+          email: localStorage.getItem("email"), // Assuming email is stored in localStorage
+          id: itemId, // Assuming itemId is passed as a prop
+          itemName: title,
+          qty: tempQuantity,
+        };
+
+        const response = await fetch(PUT_EDIT_INV_URL, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          body: JSON.stringify(updatedItem),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to update item");
+        }
+
+        const result = await response.json();
+        setQuantity(result.qty); // Update the local state with the new quantity
+        toast.success("Quantity updated successfully", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      } catch (error) {
+        console.error("Error updating item:", error);
+        toast.error("Failed to update item", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    }
+  };
+
+  // Handle delete request
+  const handleDelete = async () => {
+    try {
+      const deleteItem = {
+        email: localStorage.getItem("email"), // Get email from localStorage
+        id: itemId, // Pass the item ID to delete
+      };
+
+      const response = await fetch(DELETE_INV_URL, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(deleteItem),
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete item");
+      }
+
+      toast.success("Item deleted successfully", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+      navigate(0)
+
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      toast.error("Failed to delete item", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   return (
@@ -44,7 +141,7 @@ const InventoryCard = ({ title, initialQuantity = 0 }) => {
         <h3 className="text-xl font-semibold text-white truncate">{title}</h3>
         <div className="mt-2">
           <div className="flex justify-between text-gray-300">
-            <span className="font-medium">Quantity : {tempQuantity}</span>
+            <span className="font-medium">Quantity : {tempQuantity} </span>
           </div>
         </div>
         <div className="flex items-center justify-start mt-4 space-x-2">
@@ -70,21 +167,14 @@ const InventoryCard = ({ title, initialQuantity = 0 }) => {
               </button>
             </div>
           )}
+          <button
+            onClick={handleDelete}
+            className="bg-red-500 text-white p-2 rounded-md hover:bg-red-400"
+          >
+            <Trash size={16} />
+          </button>
         </div>
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        className="max-w-2xl mt-4"
-      />
     </div>
   );
 };
