@@ -2,52 +2,6 @@ import React, { useState } from "react";
 import { Trophy, Clipboard, Package, Tag, Copy } from "lucide-react";
 import { PROFILE_URL } from "../constants";
 import { useEffect } from "react";
-// Mock user data (for testing purposes)
-// const mockUserData = {
-//   firstName: "John",
-//   lastName: "Doe",
-//   username: "johndoe123",
-//   email: "johndoe@example.com",
-//   profilePictureURL: "https://randomuser.me/api/portraits/men/1.jpg",
-//   myReferralCode: "XYZ123",
-//   streak: 5,
-//   Achievements: [
-//     { id: 1, badge: "NewRecruit", createdAt: "2024-12-01T10:00:00Z" },
-//     {
-//       id: 2,
-//       badge: "LeaderboardChallenger",
-//       createdAt: "2024-12-15T14:00:00Z",
-//     },
-//     { id: 3, badge: "RecipeMaster", createdAt: "2025-01-05T08:00:00Z" },
-//   ],
-//   foodDonations: [
-//     {
-//       id: 1,
-//       content: "5 kg of rice",
-//       approval: true,
-//       receivedFood: true,
-//       receiverBankId: "abc123",
-//     },
-//     {
-//       id: 2,
-//       content: "10 cans of beans",
-//       approval: false,
-//       receivedFood: false,
-//       receiverBankId: "xyz456",
-//     },
-//   ],
-//   totalPoints: 250,
-//   points: [
-//     { id: 1, point: 50, createdAt: "2025-01-01T10:00:00Z" },
-//     { id: 2, point: 100, createdAt: "2025-01-05T14:00:00Z" },
-//     { id: 3, point: 100, createdAt: "2025-01-09T08:00:00Z" },
-//   ],
-//   referrals: [
-//     { id: 1, joineeId: "jane123", referralCode: "ABC123" },
-//     { id: 2, joineeId: "jack456", referralCode: "DEF456" },
-//   ],
-// };
-
 
 const ProfilePage = () => {
     const [user, setUser] = useState({}); // Initial state set to null
