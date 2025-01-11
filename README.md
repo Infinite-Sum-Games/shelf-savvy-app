@@ -39,3 +39,21 @@ Backend server located at [Shelf Savvy Server](https://github.com/infinite-sum-g
 2. Kiran Rajeev
 3. Vijay SB
 4. Ritesh Koushik
+
+## Screenshots
+1. Registration Screen    
+ ![image](https://github.com/user-attachments/assets/2bf70dbb-fdf7-462a-b454-3d381156f3ca)
+
+2. Inventory Screen    
+![image](https://github.com/user-attachments/assets/6021acf8-e364-45a6-91d0-e30a7d3dfa47)
+
+3. Leaderboard Screen    
+![image](https://github.com/user-attachments/assets/014b0236-20e2-49d3-8228-ea15393b69cc)
+4. Recipe Screen    
+![image](https://github.com/user-attachments/assets/451af6c9-0b81-4c67-9af7-98b00dc8e8f6)
+
+5.Profile Screen     
+![image](https://github.com/user-attachments/assets/395dcc19-4390-4d1a-b209-53c1ff64a76f)
+
+
+
